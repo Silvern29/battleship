@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ship extends Model
+class Square extends Model
 {
-    //
+    protected $primaryKey = 'id';
+
 }
