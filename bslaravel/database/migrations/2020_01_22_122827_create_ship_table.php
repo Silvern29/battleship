@@ -18,10 +18,14 @@ class CreateShipTable extends Migration
             $table->string('name');
             $table->integer('size');
             $table->integer('direction');
-            $table->text('coo');
+            $table->string('coo')->nullable();
             $table->integer('hits');
             $table->boolean('sunk');
             $table->timestamps();
+            $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->integer('game_id')->unsigned()->index()->nullable();
+            $table->foreign('game_id')->references('id')->on('game');
         });
     }
 

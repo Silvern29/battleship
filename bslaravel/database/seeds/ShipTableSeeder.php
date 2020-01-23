@@ -1,6 +1,8 @@
 <?php
 
+use App\Game;
 use App\Ship;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class ShipTableSeeder extends Seeder
@@ -23,8 +25,10 @@ class ShipTableSeeder extends Seeder
                 'direction' => $obj->direction,
                 'coo' => $obj->coo,
                 'hits' => $obj->hits,
-                'sunk' => $obj->sunk
-            ));
+                'sunk' => $obj->sunk,
+            ))
+                ->user()->associate(User::find($obj->user))->save()
+                ->game()->associate(Game::find($obj->game))->save();
         }
     }
 }

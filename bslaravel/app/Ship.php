@@ -13,15 +13,36 @@ class Ship extends Model
     protected $name;
     protected $size;
     protected $direction;
-
-    protected $coo = [];
+    protected $coo;
     protected $hits = 0;
     protected $sunk = false;
+
+    protected $user;
+    protected $game;
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
         $this->direction = rand(0,1);
+    }
+
+    /**
+     * Tell Laravel to cast $coo to JSON automatically when saving in DB.
+     */
+    protected $casts = [
+        'coo' => 'array',
+    ];
+
+    /**
+     * Relationship methods:
+     */
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
+    public function game(){
+        return $this->belongsTo('App\Game');
     }
 
     /**

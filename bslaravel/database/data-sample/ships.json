@@ -4,129 +4,109 @@
         "name": "Battleship",
         "size": "5",
         "direction": "1",
-        "coo": {
-            "1": "A1",
-            "2": "A2",
-            "3": "A3",
-            "4": "A4",
-            "5": "A5"
-        },
+        "coo": ["A1", "A2", "A3", "A4", "A5"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     },
     {
         "id": 2,
         "name": "Cruiser",
         "size": "4",
         "direction": "1",
-        "coo": {
-            "1": "C1",
-            "2": "C2",
-            "3": "C3",
-            "4": "C4"
-        },
+        "coo": ["C1", "C2", "C3", "C4"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     },
     {
         "id": 3,
         "name": "Cruiser",
         "size": "4",
         "direction": "1",
-        "coo": {
-            "1": "E1",
-            "2": "E2",
-            "3": "E3",
-            "4": "E4"
-        },
+        "coo": ["E1", "E2", "E3", "E4"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     },
     {
         "id": 4,
         "name": "Destroyer",
         "size": "3",
         "direction": "1",
-        "coo": {
-            "1": "G1",
-            "2": "G2",
-            "3": "G3"
-        },
+        "coo": ["G1", "G2", "G3"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     },
     {
         "id": 5,
         "name": "Destroyer",
         "size": "3",
         "direction": "1",
-        "coo": {
-            "1": "I1",
-            "2": "I2",
-            "3": "I3"
-        },
+        "coo": ["I1", "I2", "I3"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     },
     {
         "id": 6,
         "name": "Destroyer",
         "size": "3",
         "direction": "0",
-        "coo": {
-            "1": "G5",
-            "2": "H5",
-            "3": "I5"
-        },
+        "coo": ["G5", "H5", "I5"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     },
     {
         "id": 7,
         "name": "Submarine",
         "size": "2",
-        "direction": "1",
-        "coo": {
-            "1": "F7",
-            "2": "G7"
-        },
+        "direction": "0",
+        "coo": ["F7", "G7"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     },
     {
         "id": 8,
         "name": "Submarine",
         "size": "2",
-        "direction": "1",
-        "coo": {
-            "1": "I7",
-            "2": "J7"
-        },
+        "direction": "0",
+        "coo": ["I7", "J7"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     },
     {
         "id": 9,
         "name": "Submarine",
         "size": "2",
-        "direction": "1",
-        "coo": {
-            "1": "F9",
-            "2": "G9"
-        },
+        "direction": "0",
+        "coo": ["F9", "G9"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     },
     {
         "id": 10,
         "name": "Submarine",
         "size": "2",
-        "direction": "1",
-        "coo": {
-            "1": "I9",
-            "2": "J9"
-        },
+        "direction": "0",
+        "coo": ["I9", "J9"],
         "hits": 0,
-        "sunk": false
+        "sunk": false,
+        "$user": 1,
+        "game": 1
     }
 ]
