@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+"use strict";
+>>>>>>> 3ea66a08accce643b76518702b940743a0dcb440
 var bands;
 (function (bands) {
     bands[bands["Motorhead"] = 0] = "Motorhead";

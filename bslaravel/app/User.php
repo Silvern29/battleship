@@ -10,6 +10,25 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    private $ships;
+    private $games;
+    private $fields;
+
+    /**
+     * Relationship methods:
+     */
+    public function ships(){
+        return $this->hasMany('App\Ship');
+    }
+
+    public function fields(){
+        return $this->belongsToMany('App\Field');
+    }
+
+    public function games(){
+        return $this->belongsToMany('App\Game');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
