@@ -5,7 +5,7 @@ use App\Ship;
 use App\User;
 use Illuminate\Database\Seeder;
 
-class ShipTableSeeder extends Seeder
+class ShipsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class ShipTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('ship')->delete();
+        DB::table('ships')->delete();
         $json = File::get("database/data-sample/ships.json");
         $data = json_decode($json);
         foreach ($data as $obj) {
@@ -25,9 +25,11 @@ class ShipTableSeeder extends Seeder
                 'direction' => $obj->direction,
                 'coo' => $obj->coo,
                 'hits' => $obj->hits,
-                'sunk' => $obj->sunk,
+                'sunk' => $obj->sunk
+//                'user' => $obj->user,
+//                'game' => $obj->game
             ))
-                ->user()->associate(User::find($obj->user))->save()
+                ->user()->associate(User::find($obj->user))
                 ->game()->associate(Game::find($obj->game))->save();
         }
     }

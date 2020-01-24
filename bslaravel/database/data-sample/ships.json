@@ -7,7 +7,7 @@
         "coo": ["A1", "A2", "A3", "A4", "A5"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     },
     {
@@ -18,7 +18,7 @@
         "coo": ["C1", "C2", "C3", "C4"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     },
     {
@@ -29,7 +29,7 @@
         "coo": ["E1", "E2", "E3", "E4"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     },
     {
@@ -40,7 +40,7 @@
         "coo": ["G1", "G2", "G3"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     },
     {
@@ -51,7 +51,7 @@
         "coo": ["I1", "I2", "I3"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     },
     {
@@ -62,7 +62,7 @@
         "coo": ["G5", "H5", "I5"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     },
     {
@@ -73,7 +73,7 @@
         "coo": ["F7", "G7"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     },
     {
@@ -84,7 +84,7 @@
         "coo": ["I7", "J7"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     },
     {
@@ -95,7 +95,7 @@
         "coo": ["F9", "G9"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     },
     {
@@ -106,7 +106,7 @@
         "coo": ["I9", "J9"],
         "hits": 0,
         "sunk": false,
-        "$user": 1,
+        "user": 1,
         "game": 1
     }
 ]

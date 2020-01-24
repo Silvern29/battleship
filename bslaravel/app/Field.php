@@ -14,10 +14,17 @@ class Field extends Model
         $this->setSquares();
     }
 
+    /**
+     * Tell Laravel to cast $coo to JSON automatically when saving in DB.
+     */
+    protected $casts = [
+        'squares' => 'array',
+    ];
+
     public function setSquares(): void {
         for($i = 1; $i < 10; $i++){
             for($j = 1; $j < 10; $j++){
-                $squares[$i][$j] = new Square();
+                $squares[$i][$j] = '~';
             }
         }
     }

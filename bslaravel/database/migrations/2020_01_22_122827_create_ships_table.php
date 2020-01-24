@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShipTable extends Migration
+class CreateShipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateShipTable extends Migration
      */
     public function up()
     {
-        Schema::create('ship', function (Blueprint $table) {
+        Schema::create('ships', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('size');
@@ -23,9 +23,9 @@ class CreateShipTable extends Migration
             $table->boolean('sunk');
             $table->timestamps();
             $table->integer('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')->references('id')->on('user');
             $table->integer('game_id')->unsigned()->index()->nullable();
-            $table->foreign('game_id')->references('id')->on('game');
+//            $table->foreign('user_id')->references('id')->on('users');
+//            $table->foreign('game_id')->references('id')->on('games');
         });
     }
 
@@ -36,6 +36,8 @@ class CreateShipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ship');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Schema::dropIfExists('ships');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
