@@ -17,6 +17,8 @@ class CreateFieldsTable extends Migration
             $table->bigIncrements('id');
             $table->string('squares');
             $table->timestamps();
+            $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->integer('game_id')->unsigned()->index()->nullable();
         });
     }
 

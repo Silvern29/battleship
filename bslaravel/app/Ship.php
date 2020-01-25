@@ -6,19 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ship extends Model
 {
-    protected $table = 'ship';
-    protected $primaryKey = 'id';
-    protected $increment = true;
-
     protected $name;
     protected $size;
     protected $direction;
     protected $coo;
     protected $hits = 0;
     protected $sunk = false;
-
-    protected $user;
-    protected $game;
 
     public function __construct(array $attributes = [])
     {

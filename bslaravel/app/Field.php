@@ -11,7 +11,7 @@ class Field extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->setSquares();
+        $this->setField();
     }
 
     /**
@@ -21,10 +21,18 @@ class Field extends Model
         'squares' => 'array',
     ];
 
-    public function setSquares(): void {
+    public function game(){
+        return $this->belongsTo('App\Game');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
+    public function setField(): void {
         for($i = 1; $i < 10; $i++){
             for($j = 1; $j < 10; $j++){
-                $squares[$i][$j] = '~';
+                $this->squares[$i][$j] = '~';
             }
         }
     }

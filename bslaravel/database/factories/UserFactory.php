@@ -25,10 +25,3 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
-
-$factory->define(App\Band::class, function(Faker $faker){
-    return [
-        'name' => $faker->word,
-        'description'=>$faker->sentence
-    ];
-});

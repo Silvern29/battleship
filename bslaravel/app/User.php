@@ -10,10 +10,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    private $ships;
-    private $games;
-    private $fields;
-
     /**
      * Relationship methods:
      */
@@ -22,7 +18,7 @@ class User extends Authenticatable
     }
 
     public function fields(){
-        return $this->belongsToMany('App\Field');
+        return $this->hasMany('App\Field');
     }
 
     public function games(){
