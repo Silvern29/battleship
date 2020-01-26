@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFieldsTable extends Migration
+class CreateGamesUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fields', function (Blueprint $table) {
+        Schema::create('game_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('squares')->nullable();
-            $table->timestamps();
-            $table->integer('user_id')->unsigned()->index()->nullable();
-            $table->integer('game_id')->unsigned()->index()->nullable();
+
+            $table->integer('game_id')->unsigned()->index();
+            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
+
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -30,7 +32,7 @@ class CreateFieldsTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('fields');
+        Schema::dropIfExists('games_users');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

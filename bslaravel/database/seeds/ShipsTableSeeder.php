@@ -25,12 +25,12 @@ class ShipsTableSeeder extends Seeder
                 'direction' => $obj->direction,
                 'coo' => $obj->coo,
                 'hits' => $obj->hits,
-                'sunk' => $obj->sunk
-//                'user' => $obj->user,
-//                'game' => $obj->game
-            ))
-                ->user()->associate(User::find($obj->user))
-                ->game()->associate(Game::find($obj->game))->save();
+                'sunk' => $obj->sunk,
+                'user_id' => $obj->user,
+                'game_id' => $obj->game
+            ));
+//                ->user()->associate(User::find($obj->user))
+//                ->game()->associate(Game::find($obj->game))->save();
         }
     }
 }

@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Field extends Model
 {
-    private $squares = [];
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-        $this->setField();
-    }
+    protected $fillable = [
+        'game',
+        'user',
+        'squares' => []
+    ];
 
     /**
      * Tell Laravel to cast $coo to JSON automatically when saving in DB.
@@ -29,11 +28,14 @@ class Field extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function setField(): void {
+    public function setField(): Field {
+        $field = [];
         for($i = 1; $i < 10; $i++){
             for($j = 1; $j < 10; $j++){
-                $this->squares[$i][$j] = '~';
+                $field[$i][$j] = '~';
             }
         }
+        $this->squares = $field;
+        return $this;
     }
 }

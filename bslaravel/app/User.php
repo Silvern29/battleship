@@ -11,21 +11,6 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * Relationship methods:
-     */
-    public function ships(){
-        return $this->hasMany('App\Ship');
-    }
-
-    public function fields(){
-        return $this->hasMany('App\Field');
-    }
-
-    public function games(){
-        return $this->belongsToMany('App\Game');
-    }
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -51,4 +36,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relationship methods:
+     */
+    public function ships(){
+        return $this->hasMany('App\Ship');
+    }
+
+    public function fields(){
+        return $this->hasMany('App\Field');
+    }
+
+    public function games(){
+        return $this->belongsToMany('App\Game');
+    }
 }
