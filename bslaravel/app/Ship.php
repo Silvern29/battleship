@@ -9,7 +9,7 @@ class Ship extends Model
     protected $fillable = [
         'name',
         'size',
-        'direction',
+        'direction' => 0,
         'coo',
         'user_id',
         'game_id',
@@ -40,10 +40,10 @@ class Ship extends Model
      */
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     public function game(){
-        return $this->belongsTo('App\Game');
+        return $this->belongsTo(Game::class);
     }
 }

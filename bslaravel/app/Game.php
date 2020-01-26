@@ -10,15 +10,15 @@ class Game extends Model
      * Relationship methods:
      */
     public function fields(){
-        return $this->hasMany('App\Field');
+        return $this->hasMany(Field::class);
     }
 
     public function ships(){
-        return $this->hasMany('App\Ship');
+        return $this->hasMany(Ship::class);
     }
 
     public function users(){
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany(User::class);
     }
 
 }

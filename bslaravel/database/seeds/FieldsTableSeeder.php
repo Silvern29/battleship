@@ -25,7 +25,5 @@ class FieldsTableSeeder extends Seeder
             'user_id' => '2',
             'game_id' => '1'
         ))->setField()->save();
-//            ->user()->associate(User::find(2))
-//            ->game()->associate(Game::find(1))->save();
     }
 }

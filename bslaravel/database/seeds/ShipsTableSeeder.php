@@ -32,5 +32,7 @@ class ShipsTableSeeder extends Seeder
 //                ->user()->associate(User::find($obj->user))
 //                ->game()->associate(Game::find($obj->game))->save();
         }
+
+//        User::find(1)->ships()->saveMany(Ship::all());
     }
 }

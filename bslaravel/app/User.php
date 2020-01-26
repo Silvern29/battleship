@@ -41,14 +41,14 @@ class User extends Authenticatable
      * Relationship methods:
      */
     public function ships(){
-        return $this->hasMany('App\Ship');
+        return $this->hasMany(Ship::class);
     }
 
     public function fields(){
-        return $this->hasMany('App\Field');
+        return $this->hasMany(Field::class);
     }
 
     public function games(){
-        return $this->belongsToMany('App\Game');
+        return $this->belongsToMany(Game::class);
     }
 }

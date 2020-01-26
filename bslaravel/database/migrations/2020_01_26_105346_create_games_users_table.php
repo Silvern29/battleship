@@ -22,6 +22,16 @@ class CreateGamesUsersTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
+        Schema::table('ships', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('game_id')->references('id')->on('games');
+        });
+
+        Schema::table('fields', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('game_id')->references('id')->on('games');
+        });
     }
 
     /**
@@ -32,7 +42,7 @@ class CreateGamesUsersTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('games_users');
+        Schema::dropIfExists('game_user');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
