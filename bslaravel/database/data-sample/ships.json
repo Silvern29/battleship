@@ -16,8 +16,8 @@
         "size": "4",
         "direction": "1",
         "coo": ["C1", "C2", "C3", "C4"],
-        "hits": 0,
-        "sunk": false,
+        "hits": 4,
+        "sunk": true,
         "user": 1,
         "game": 1
     },

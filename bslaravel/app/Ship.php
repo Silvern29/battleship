@@ -6,13 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ship extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'size',
-        'direction' => 0,
+        'direction',
         'coo',
         'user_id',
         'game_id',
+        'hits',
+        'sunk'
+    ];
+
+    protected $attributes = [
+        'direction' => 0,
         'hits' => 0,
         'sunk' => false
     ];

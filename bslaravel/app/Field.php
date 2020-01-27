@@ -9,7 +9,7 @@ class Field extends Model
     protected $fillable = [
         'game',
         'user',
-        'squares' => []
+        'squares'
     ];
 
     /**
