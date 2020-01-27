@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+Auth::routes();
 
-Route::resource('bands','BandController');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/play', 'GameController@index')->name('home');
