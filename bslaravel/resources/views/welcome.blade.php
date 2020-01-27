@@ -69,6 +69,15 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -81,19 +90,27 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Battleship
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                @auth()
+                    <div class="jumbotron">
+{{--                        <h1>Start New Game</h1>--}}
+                        <hr />
+                        <p><a class="btn btn-lg btn-block btn-success" href="{{ URL::to('/play?newgame=true') }}" role="button">PLAY</a></p>
+                    </div>
+                @endauth
+
+{{--                <div class="links">--}}
+{{--                    <a href="https://laravel.com/docs">Docs</a>--}}
+{{--                    <a href="https://laracasts.com">Laracasts</a>--}}
+{{--                    <a href="https://laravel-news.com">News</a>--}}
+{{--                    <a href="https://blog.laravel.com">Blog</a>--}}
+{{--                    <a href="https://nova.laravel.com">Nova</a>--}}
+{{--                    <a href="https://forge.laravel.com">Forge</a>--}}
+{{--                    <a href="https://vapor.laravel.com">Vapor</a>--}}
+{{--                    <a href="https://github.com/laravel/laravel">GitHub</a>--}}
+{{--                </div>--}}
             </div>
         </div>
     </body>

@@ -1,10 +1,20 @@
-@extends('app')
+@extends('layouts.app')
 
-@section('title') Play @parent @endsection
+@section('title') Play @parent
+@endsection
 
 @section('content')
 
     <div class="col-md-8">
+        <div class="debug">
+                {{ $game }}
+        </div>
+        <div class="debug">
+                {{ $user }}
+        </div>
+        <div class="debug">
+                {{ $ships }}
+        </div>
         <table class="table table-bordered table-condensed">
             <thead>
             <tr>
@@ -37,8 +47,8 @@
             <tbody>
             @foreach($ships as $ship)
                 <tr>
-                    <td>{{$ship->getName()}}</td>
-                    <td>{{$ship->getLength()}}</td>
+                    <td>{{$ship->name}}</td>
+                    <td>{{$ship->size}}</td>
                 </tr>
             @endforeach
             </tbody>
