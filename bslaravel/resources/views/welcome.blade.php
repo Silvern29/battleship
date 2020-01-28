@@ -69,6 +69,9 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        @if(session('game') != null)
+                        <a href="{{ url('/play') }}">Game</a>
+                        @endif
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -97,7 +100,8 @@
                     <div class="jumbotron">
 {{--                        <h1>Start New Game</h1>--}}
                         <hr />
-                        <p><a class="btn btn-lg btn-block btn-success" href="{{ URL::to('/play?newgame=true') }}" role="button">PLAY</a></p>
+                        <p><a class="btn btn-lg btn-block btn-success" href="{{ URL::to('/play/new') }}" role="button">NEW GAME</a></p>
+{{--                        <p><a class="btn btn-lg btn-block btn-success" href="{{ URL::to('/play?newgame=true') }}" role="button">PLAY</a></p>--}}
                     </div>
                 @endauth
 

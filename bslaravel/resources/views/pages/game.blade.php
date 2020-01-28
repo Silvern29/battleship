@@ -8,12 +8,15 @@
     <div class="col-md-8">
         <div class="debug">
                 {{ $game }}
-        </div>
+        </div><br>
         <div class="debug">
                 {{ $user }}
-        </div>
+        </div><br>
         <div class="debug">
                 {{ $ships }}
+        </div><br>
+        <div class="debug">
+            {{ $field }}
         </div>
         <table class="table table-bordered table-condensed">
             <thead>
