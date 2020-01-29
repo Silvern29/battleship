@@ -29,7 +29,7 @@ class GameController extends Controller
         $user->games()->saveMany([$game]);
         $ships = $this->shipController->createShips($user, $game);
         $field = Field::create(['user_id' => $user->id, 'game_id' => $game->id]);
-        $this->fieldController->placeShips($ships);
+        $this->fieldController->placeShips($field, $ships);
         return redirect('/play');
     }
 

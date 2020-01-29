@@ -21,8 +21,8 @@ class Field extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->setField();
         $this->setLetters();
+        $this->setField();
     }
 
     /**
@@ -42,9 +42,9 @@ class Field extends Model
 
     public function setField(): Field {
         $field = [];
-        for($i = 1; $i < 10; $i++){
-            for($j = 1; $j <= 10; $j++){
-                $field[$i][$j] = '~';
+        for($i = 1; $i <= 10; $i++){ //Columns
+            for($j = 1; $j <= 10; $j++){ //Rows
+                $field[$this->letters[$i]][$j] = '~';
             }
         }
         $this->squares = $field;
@@ -55,4 +55,6 @@ class Field extends Model
         $letters = range('A', 'J');
         $this->letters = array_combine(range(1, count($letters)), array_values($letters));
     }
+
+
 }
