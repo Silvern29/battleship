@@ -1,4 +1,4 @@
-function fire(row, col) {
+function fire(row, col, user) {
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type: 'POST',
@@ -8,7 +8,8 @@ function fire(row, col) {
         data: {
             _token: CSRF_TOKEN,
             row: row,
-            col: col
+            col: col,
+            user: user
         },
         success: function (data) {
             if(data.hit == true) {

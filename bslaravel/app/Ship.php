@@ -25,7 +25,7 @@ class Ship extends Model
     protected $attributes = [
         'direction' => 0,
         'hits' => 0,
-        'sunk' => false,
+        'sunk' => false
     ];
 
     /**
@@ -41,10 +41,9 @@ class Ship extends Model
             array_merge(
                 $this->attributes,
                 [
-                    'direction' => rand(0, 1),
-                    'coo' => range("A", "J")[rand(0, 9)] . rand(1, 10)
+                    'direction' => rand(0, 1)
                 ]
-            ), true);
+            ));
 
         parent::__construct($attributes);
     }

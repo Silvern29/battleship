@@ -53,8 +53,14 @@ class Field extends Model
 
     public function setLetters(){
         $letters = range('A', 'J');
-        $this->letters = array_combine(range(1, count($letters)), array_values($letters));
+            $this->letters = array_combine(range(1, count($letters)), array_values($letters));
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function getLetters()
+    {
+        return $this->letters;
+    }
 }
