@@ -4,7 +4,6 @@
 @endsection
 
 @section('content')
-
     <div class="container col-md-12 d-flex center">
         <div class="col-md-4">
             <h2>Your Battlefield</h2>
@@ -22,9 +21,23 @@
                     <tr>
                         <td>{{$m}}</td>
                         @for ($n = 'A'; $n <= 'J'; $n ++)
-                            <td><input type="button" class="btn btn-block btn-info"
-                                       onclick="fire('{{$m}}','{{$n}}', '{{ $user->id }}')" value=" " id="{{$m}}{{$n}}">
-                            </td>
+                            @if($uField[$n][$m] === ' ')
+                                <td><input type="button" class="btn btn-block btn-success disabled"
+                                           value=" " id="user{{$n}}{{$m}}">
+                                </td>
+                            @elseif($uField[$n][$m] === 'X')
+                                <td><input type="button" class="btn btn-block btn-danger disabled"
+                                           value=" " id="user{{$n}}{{$m}}">
+                                </td>
+                            @elseif($uField[$n][$m] === '~')
+                                <td><input type="button" class="btn btn-block btn-info disabled"
+                                           value=" " id="user{{$n}}{{$m}}">
+                                </td>
+                            @else
+                                <td><input type="button" class="btn btn-block btn-info disabled"
+                                           value=" " id="user{{$n}}{{$m}}">
+                                </td>
+                            @endif
                         @endfor
                     </tr>
                 @endfor
@@ -47,9 +60,19 @@
                     <tr>
                         <td>{{$i}}</td>
                         @for ($k = 'A'; $k <= 'J'; $k ++)
-                            <td><input type="button" class="btn btn-block btn-info"
-                                       onclick="fire('{{$i}}','{{$k}}', '{{ $user->id }}')" value=" " id="{{$i}}{{$k}}">
-                            </td>
+                            @if($nField[$n][$m] === ' ')
+                                <td><input type="button" class="btn btn-block btn-success disabled"
+                                           onclick="fire('{{$n}}', '{{$m}}')" value=" " id="user{{$n}}{{$m}}">
+                                </td>
+                            @elseif($nField[$n][$m] === 'X')
+                                <td><input type="button" class="btn btn-block btn-danger disabled"
+                                           onclick="fire('{{$n}}', '{{$m}}')" value=" " id="user{{$n}}{{$m}}">
+                                </td>
+                            @else
+                                <td><input type="button" class="btn btn-block btn-info"
+                                           onclick="fire('{{$n}}', '{{$m}}')" value=" " id="user{{$n}}{{$m}}">
+                                </td>
+                            @endif
                         @endfor
                     </tr>
                 @endfor
@@ -57,9 +80,9 @@
             </table>
         </div>
     </div>
+    <h3 id="msg"></h3>
+
     <div class="container col-md-12 d-flex center">
-
-
         <div class="col-md-4">
             <table class="table table-bordered table-condensed">
                 <thead>
@@ -79,7 +102,6 @@
                 @endforeach
                 </tbody>
             </table>
-            <h3 id="msg"></h3>
         </div>
         <div class="col-md-4">
             <table class="table table-bordered table-condensed">
@@ -100,8 +122,10 @@
                 @endforeach
                 </tbody>
             </table>
-            <h3 id="msg"></h3>
         </div>
     </div>
-
+    <script>
+        colorUserField({{$uField}});
+        colorNPCField({{$nField}});
+    </script>
 @endsection

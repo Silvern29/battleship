@@ -19,13 +19,14 @@ class Ship extends Model
         'user_id',
         'game_id',
         'hits',
-        'sunk'
+        'sunk',
     ];
 
     protected $attributes = [
         'direction' => 0,
         'hits' => 0,
-        'sunk' => false
+        'sunk' => false,
+//        'coo' => [],
     ];
 
     /**
@@ -37,6 +38,7 @@ class Ship extends Model
 
     public function __construct(array $attributes = [])
     {
+
         $this->setRawAttributes(
             array_merge(
                 $this->attributes,
@@ -66,4 +68,6 @@ class Ship extends Model
         $this->coo = array(range("A", "J")[rand(0, 9)] . rand(1, 10));
         return $this->coo;
     }
+
+
 }

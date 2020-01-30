@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Field;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class NPCController extends Controller
 {
@@ -16,4 +18,26 @@ class NPCController extends Controller
         $this->shipController = $shipController;
     }
 
+    public function npcShot(Field $field){
+        $target = $field[range('A', 'J')[rand(1,10)]][rand(1,10)];
+        Log::debug($target);
+
+
+        if($target === " " || $target === "X"){
+            $this->npcShot($field);
+        }
+
+        $msg = "NPC missed!";
+        $npcHits = false;
+
+        if ($target != '~') {
+            $target = 'X';
+            $npcHits = true;
+            $msg = 'NPC hit!';
+        } else {
+            $target = ' ';
+        }
+
+        return ['msg' => $msg, 'npcHits' => $npcHits];
+    }
 }

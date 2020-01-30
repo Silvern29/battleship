@@ -11,6 +11,12 @@ class ShipController extends Controller
 {
     public function checkHit($ship, $shot): bool
     {
+//        if(in_array($shot, $ship->coo)){
+//            $ship->hits++;
+//            if ($ship->hits === $ship->size){
+//
+//            }
+//        }
         return in_array($shot, $ship->coo);
     }
 

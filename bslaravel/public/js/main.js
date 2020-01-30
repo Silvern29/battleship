@@ -1,4 +1,6 @@
-function fire(row, col, user) {
+
+
+function fire(col, row) {
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type: 'POST',
@@ -9,15 +11,39 @@ function fire(row, col, user) {
             _token: CSRF_TOKEN,
             row: row,
             col: col,
-            user: user
         },
         success: function (data) {
             if(data.hit == true) {
-                $('#'+row+col).removeClass("btn-info").addClass("btn-success").addClass('disabled').attr('disabled', true);
+                $('#npc'+col+row).removeClass("btn-info").addClass("btn-danger").addClass('disabled').attr('disabled', true);
             } else {
-                $('#'+row+col).removeClass("btn-info").addClass("btn-danger").addClass('disabled').attr('disabled', true);
+                $('#npc'+col+row).removeClass("btn-info").addClass("btn-success").addClass('disabled').attr('disabled', true);
             }
             $('#msg').text(data.message);
+
         }
     });
+}
+
+function colorUserField(field) {
+    for (col = 'A'; col <= 'J'; col++){
+        for (row = 1; row <= 10; row++){
+            if(field[col][row] === ' ') {
+                $('#user'+col+row).removeClass("btn-info").addClass("btn-danger").addClass('disabled').attr('disabled', true);
+            } else if (field[col][row] === 'X') {
+                $('#user'+col+row).removeClass("btn-info").addClass("btn-success").addClass('disabled').attr('disabled', true);
+            }
+        }
+    }
+}
+
+function colorNPCField(field) {
+    for (col = 'A'; col <= 'J'; col++){
+        for (row = 1; row <= 10; row++){
+            if(field[col][row] === ' ') {
+                $('#npc'+col+row).removeClass("btn-info").addClass("btn-danger").addClass('disabled').attr('disabled', true);
+            } else if (field[col][row] === 'X') {
+                $('#npc'+col+row).removeClass("btn-info").addClass("btn-success").addClass('disabled').attr('disabled', true);
+            }
+        }
+    }
 }
