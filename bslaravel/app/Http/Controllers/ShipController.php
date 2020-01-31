@@ -11,13 +11,15 @@ class ShipController extends Controller
 {
     public function checkHit($ship, $shot): bool
     {
-//        if(in_array($shot, $ship->coo)){
-//            $ship->hits++;
-//            if ($ship->hits === $ship->size){
-//
-//            }
-//        }
-        return in_array($shot, $ship->coo);
+        if(in_array($shot, $ship->coo)){
+            $ship->hits++;
+            if ($ship->hits === $ship->size){
+                $ship->sunk = true;
+            }
+            $ship->save();
+            return true;
+        }
+        return false;
     }
 
     public static function createShips(User $user, Game $game)

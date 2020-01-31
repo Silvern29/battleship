@@ -20,6 +20,12 @@ function fire(col, row) {
             }
             $('#msg').text(data.message);
 
+            if(data.npcHits == true){
+                $('#user'+data.col+data.row).removeClass("btn-info").addClass("btn-danger").addClass('disabled').attr('disabled', true);
+            } else {
+                $('#user'+data.col+data.row).removeClass("btn-info").addClass("btn-success").addClass('disabled').attr('disabled', true);
+            }
+
         }
     });
 }

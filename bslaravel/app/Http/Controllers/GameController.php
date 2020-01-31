@@ -50,7 +50,7 @@ class GameController extends Controller
             'ships_sunk' => 0,
             'user' => $this->user->id,
             'uField' => $this->uField->id,
-            'nField' => $this->npc->getField()->id
+            'nField' => $this->npc->field->id
         ]);
 
         return redirect('/play');
@@ -70,16 +70,15 @@ class GameController extends Controller
     public function playAction()
     {
         $this->init();
-
         return view(
             'pages.game',
             [
                 'npcUser' => $this->npc->user,
                 'user' => $this->user,
                 'game' => $this->game,
-                'ships' => $this->user->ships,
-                'uField' => $this->uField,
-                'nField' => $this->npc->getField()
+                'ships' => $this->ships,
+                'uField' => $this->uField->squares,
+                'nField' => $this->npc->field->squares,
             ]);
     }
 
@@ -88,26 +87,21 @@ class GameController extends Controller
         $shot = $request->col . $request->row;
 
         $this->init();
-//        $game = Game::find(session('game'));
-//        $user = User::find(session('user'));
-//        $field = Field::find(session('uField'));
-//        $npc = new NPC($game);
-
-//        Log::debug($this->npc->getShips());
-//        Log::debug($this->user);
 
         $hit = false;
         $message = 'Miss!';
         $npcHits = false;
 
         $shipsSunk = session('ships_sunk');
-        $totalShips = count($this->npc->getShips());
+        $totalShips = count($this->npc->ships);
 
-        foreach ($this->npc->getShips() as $ship){
-            Log::debug($ship);
+        foreach ($this->npc->ships as $ship){
             if($this->shipController->checkHit($ship, $shot)){
                 $hit = true;
                 $message = 'Hit! ';
+                $npcField = $this->npc->field;
+                $npcField->squares[$request->col][$request->row] = 'X';
+                $npcField->save();
 
                 if ($ship->sunk) {
                     $message = 'Ship ' . $ship->name . ' sunk!';
@@ -117,15 +111,20 @@ class GameController extends Controller
             }
         }
 
+        $col = 'A';
+        $row = 1;
+
         if ($totalShips == $shipsSunk) {
             $message = 'GAME OVER!';
         } else {
             $npcShooting = $this->npcController->npcShot($this->uField);
             $message .= ' ' . $npcShooting['msg'];
             $npcHits = $npcShooting['npcHits'];
+            $col = $npcShooting['col'];
+            $row = $npcShooting['row'];
         }
 
-        return response()->json(['hit' => $hit, 'npcHits' => $npcHits, 'message' => $message]);
+        return response()->json(['hit' => $hit, 'npcHits' => $npcHits, 'message' => $message, 'col' => $col, 'row' => $row]);
     }
 
 }

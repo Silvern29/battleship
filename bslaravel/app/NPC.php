@@ -5,15 +5,14 @@ namespace App;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\ShipController;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class NPC extends Model
 {
-    private $game;
-    private $user;
-    private $field;
-    private $ships;
-
-
+    public $game;
+    public $user;
+    public $field;
+    public $ships;
 
     public function createNPC(Game $game){
         $this->game = $game;
@@ -31,12 +30,12 @@ class NPC extends Model
         $this->game = $game;
         $this->user = User::find(1);
         $this->ships = Ship::where('game_id', '=', $this->game->id)
-            ->where('user_id', '=', $this->user->id)
+            ->where('user_id', '=', 1)
             ->get();
 
         $this->field = Field::where('game_id', '=', $this->game->id)
-            ->where('user_id', '=', $this->user->id)
-            ->get();
+            ->where('user_id', '=', 1)
+            ->first();
     }
 
     /**

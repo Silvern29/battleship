@@ -19,9 +19,10 @@ class NPCController extends Controller
     }
 
     public function npcShot(Field $field){
-        $target = $field[range('A', 'J')[rand(1,10)]][rand(1,10)];
-        Log::debug($target);
-
+        $col = range('A', 'J')[rand(0,9)];
+        $row = rand(1,10);
+        $target = $field->squares[$col][$row];
+        $userField = $field;
 
         if($target === " " || $target === "X"){
             $this->npcShot($field);
@@ -30,14 +31,16 @@ class NPCController extends Controller
         $msg = "NPC missed!";
         $npcHits = false;
 
-        if ($target != '~') {
-            $target = 'X';
+        if ($target != "~") {
+            $userField->squares[$col][$row] = 'X';
             $npcHits = true;
             $msg = 'NPC hit!';
         } else {
             $target = ' ';
         }
 
-        return ['msg' => $msg, 'npcHits' => $npcHits];
+        $field->update();
+
+        return ['msg' => $msg, 'npcHits' => $npcHits, 'col' => $col, 'row' => $row];
     }
 }
