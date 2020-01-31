@@ -99,16 +99,22 @@ class GameController extends Controller
             if($this->shipController->checkHit($ship, $shot)){
                 $hit = true;
                 $message = 'Hit! ';
-                $npcField = $this->npc->field;
-                $npcField->squares[$request->col][$request->row] = 'X';
-                $npcField->save();
+                $npcField = $this->npc->field->squares;
+                $npcField[$request->col][$request->row] = 'X';
+                $this->npc->field->squares = $npcField;
+                $this->npc->field->save();
 
                 if ($ship->sunk) {
                     $message = 'Ship ' . $ship->name . ' sunk!';
                     $shipsSunk++;
                     session(['ships_sunk' => $shipsSunk]);
                 }
-            }
+            } /*else {
+                $npcField = $this->npc->field->squares;
+                $npcField[$request->col][$request->row] = ' ';
+                $this->npc->field->squares = $npcField;
+                $this->npc->field->save();
+            }*/
         }
 
         $col = 'A';

@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="container col-md-12 d-flex center">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <h2>Your Battlefield</h2>
             <table class="table table-bordered table-condensed">
                 <thead>
@@ -44,7 +44,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <h2>Enemies Battlefield</h2>
             <table class="table table-bordered table-condensed">
                 <thead>

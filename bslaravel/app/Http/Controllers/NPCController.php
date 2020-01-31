@@ -22,7 +22,7 @@ class NPCController extends Controller
         $col = range('A', 'J')[rand(0,9)];
         $row = rand(1,10);
         $target = $field->squares[$col][$row];
-        $userField = $field;
+        $userField = $field->squares;
 
         if($target === " " || $target === "X"){
             $this->npcShot($field);
@@ -32,14 +32,15 @@ class NPCController extends Controller
         $npcHits = false;
 
         if ($target != "~") {
-            $userField->squares[$col][$row] = 'X';
+            $userField[$col][$row] = 'X';
             $npcHits = true;
             $msg = 'NPC hit!';
         } else {
-            $target = ' ';
+            $userField[$col][$row] = ' ';
         }
 
-        $field->update();
+        $field->squares = $userField;
+        $field->save();
 
         return ['msg' => $msg, 'npcHits' => $npcHits, 'col' => $col, 'row' => $row];
     }
