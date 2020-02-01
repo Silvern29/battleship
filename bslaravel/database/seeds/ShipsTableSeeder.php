@@ -14,7 +14,7 @@ class ShipsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('ships')->delete();
+        /*DB::table('ships')->delete();
         $json = File::get("database/data-sample/ships.json");
         $data = json_decode($json);
         foreach ($data as $obj) {
@@ -33,6 +33,6 @@ class ShipsTableSeeder extends Seeder
 //                ->game()->associate(Game::find($obj->game))->save();
         }
 
-//        User::find(1)->ships()->saveMany(Ship::all());
+//        User::find(1)->ships()->saveMany(Ship::all());*/
     }
 }

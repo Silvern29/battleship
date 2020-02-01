@@ -11,7 +11,7 @@ class GamesUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('game_user')->delete();
+        /*DB::table('game_user')->delete();
         DB::table('game_user')->insert([
            'game_id' => 1,
            'user_id' => 1,
@@ -20,6 +20,6 @@ class GamesUsersTableSeeder extends Seeder
         DB::table('game_user')->insert([
            'game_id' => 1,
            'user_id' => 2,
-        ]);
+        ]);*/
     }
 }

@@ -12,9 +12,9 @@ class GamesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('games')->delete();
+        /*DB::table('games')->delete();
         Game::create(array(
             'id' => 1
-        ));
+        ));*/
     }
 }

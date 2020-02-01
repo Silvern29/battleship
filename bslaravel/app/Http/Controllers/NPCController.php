@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Field;
+use App\Ship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -32,9 +33,16 @@ class NPCController extends Controller
         $npcHits = false;
 
         if ($target != "~") {
-            $userField[$col][$row] = 'X';
             $npcHits = true;
             $msg = 'NPC hit!';
+            /*$ship = Ship::find($target);
+            $ship->hits++;
+            if($ship->hits >= $ship->size){
+                $ship->sunk = true;
+                $msg = 'Your ' . $ship->name . ' sunk!';
+            }
+            $ship->save();*/
+            $userField[$col][$row] = 'X';
         } else {
             $userField[$col][$row] = ' ';
         }

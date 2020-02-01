@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class FieldController extends Controller
 {
-    public function checkFields(Field $field, Ship $ship){
+    public function checkFields($field, Ship $ship){
         $coo = [];
 
         if($ship->direction === 0){
@@ -36,6 +36,8 @@ class FieldController extends Controller
     }
 
     public function setShipCoo(Field $field, Ship $ship){
+        $field = Field::find($field->id);
+
         $coo = $this->checkFields($field, $ship);
 
         $ship->coo = $coo;

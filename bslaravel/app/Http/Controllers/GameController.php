@@ -73,7 +73,7 @@ class GameController extends Controller
         return view(
             'pages.game',
             [
-                'npcUser' => $this->npc->user,
+                'npcUser' => $this->npc,
                 'user' => $this->user,
                 'game' => $this->game,
                 'ships' => $this->ships,
@@ -84,41 +84,39 @@ class GameController extends Controller
 
     public function shotAction(Request $request)
     {
-        $shot = $request->col . $request->row;
-
         $this->init();
 
+        $col = $request->col;
+        $row = $request->row;
         $hit = false;
         $message = 'Miss!';
         $npcHits = false;
-
         $shipsSunk = session('ships_sunk');
         $totalShips = count($this->npc->ships);
+        $npcField = $this->npc->field->squares;
+        Log::debug($npcField[$col][$row]);
 
-        foreach ($this->npc->ships as $ship){
-            if($this->shipController->checkHit($ship, $shot)){
-                $hit = true;
-                $message = 'Hit! ';
-                $npcField = $this->npc->field->squares;
-                $npcField[$request->col][$request->row] = 'X';
-                $this->npc->field->squares = $npcField;
-                $this->npc->field->save();
+        if($npcField[$col][$row] != '~'){
+            $hit = true;
+            $message = 'Hit! ';
 
-                if ($ship->sunk) {
-                    $message = 'Ship ' . $ship->name . ' sunk!';
-                    $shipsSunk++;
-                    session(['ships_sunk' => $shipsSunk]);
-                }
-            } /*else {
-                $npcField = $this->npc->field->squares;
-                $npcField[$request->col][$request->row] = ' ';
-                $this->npc->field->squares = $npcField;
-                $this->npc->field->save();
-            }*/
+            $ship = Ship::find($npcField[$col][$row]);
+            $ship->hits++;
+            if ($ship->hits >= $ship->size){
+                $ship->sunk = true;
+                $message = 'Ship ' . $ship->name . ' sunk!';
+                $shipsSunk++;
+                session(['ships_sunk' => $shipsSunk]);
+            }
+            $ship->save();
+
+            $npcField[$request->col][$request->row] = 'X';
+        } else {
+            $npcField[$request->col][$request->row] = ' ';
         }
 
-        $col = 'A';
-        $row = 1;
+        $this->npc->field->squares = $npcField;
+        $this->npc->field->save();
 
         if ($totalShips == $shipsSunk) {
             $message = 'GAME OVER!';
@@ -126,11 +124,11 @@ class GameController extends Controller
             $npcShooting = $this->npcController->npcShot($this->uField);
             $message .= ' ' . $npcShooting['msg'];
             $npcHits = $npcShooting['npcHits'];
-            $col = $npcShooting['col'];
-            $row = $npcShooting['row'];
+            $nCol = $npcShooting['col'];
+            $nRow = $npcShooting['row'];
         }
 
-        return response()->json(['hit' => $hit, 'npcHits' => $npcHits, 'message' => $message, 'col' => $col, 'row' => $row]);
+        return response()->json(['hit' => $hit, 'npcHits' => $npcHits, 'message' => $message, 'col' => $nCol, 'row' => $nRow]);
     }
 
 }
